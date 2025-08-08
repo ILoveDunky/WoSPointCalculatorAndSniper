@@ -1145,6 +1145,12 @@
                 container.appendChild(card);
             });
         }
+
+        function getEfficiencyBadge(points) {
+            if (points <= 100) return { text: 'Expensive', class: '' };
+            if (points <= 1500) return { text: 'Medium', class: '' };
+            if (points <= 10000) return { text: 'Better', class: 'medium' };
+            return { text: 'Not Worth', class: 'low' };
         }
 
         function renderSpecialCalculations() {
