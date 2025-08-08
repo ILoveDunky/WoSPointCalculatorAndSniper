@@ -20,10 +20,11 @@
             --text-primary: #ffffff;
             --text-secondary: #b8c5d6;
             --border-color: #2a3f5f;
-            --success: #4caf50;
-            --warning: #ff9800;
+            --success: #2196f3;
+            --warning: #3282b8;
             --gradient: linear-gradient(135deg, #0f4c75, #3282b8);
             --gold: #ffd700;
+            --ice-blue: #87ceeb;
         }
 
         body {
@@ -31,6 +32,7 @@
             color: var(--text-primary);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
@@ -126,12 +128,18 @@
             gap: 10px;
         }
 
+        .main-toggles {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
         .toggle-container {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
         }
 
         .toggle {
@@ -163,6 +171,43 @@
 
         .toggle.active::after {
             transform: translateX(24px);
+        }
+
+        .advanced-options {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .advanced-header {
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .advanced-header:hover {
+            background: rgba(50, 130, 184, 0.1);
+        }
+
+        .advanced-content {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .advanced-content.active {
+            display: block;
+        }
+
+        .advanced-toggles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
         }
 
         .items-grid {
@@ -248,6 +293,28 @@
             font-weight: 500;
         }
 
+        .instructions {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--ice-blue);
+        }
+
+        .instructions h4 {
+            color: var(--ice-blue);
+            margin-bottom: 8px;
+        }
+
+        .instructions ol {
+            color: var(--text-secondary);
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 5px;
+        }
+
         .summary {
             background: var(--gradient);
             border-radius: 12px;
@@ -308,7 +375,7 @@
         }
 
         .efficiency-badge {
-            background: var(--success);
+            background: var(--bright-blue);
             color: white;
             padding: 2px 6px;
             border-radius: 4px;
@@ -317,15 +384,16 @@
         }
 
         .efficiency-badge.medium {
-            background: var(--warning);
+            background: var(--ice-blue);
+            color: var(--bg-primary);
         }
 
         .efficiency-badge.low {
-            background: #f44336;
+            background: var(--accent-blue);
         }
 
         .delete-btn {
-            background: #f44336;
+            background: var(--accent-blue);
             color: white;
             border: none;
             padding: 5px 8px;
@@ -335,7 +403,7 @@
         }
 
         .add-custom-btn {
-            background: var(--success);
+            background: var(--bright-blue);
             color: white;
             border: none;
             padding: 10px 20px;
@@ -343,6 +411,53 @@
             cursor: pointer;
             font-weight: bold;
             margin-top: 10px;
+        }
+
+        .timer-section {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timer-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--ice-blue);
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            background: var(--bg-primary);
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            background: var(--gradient);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .event-info {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .resource-tracker {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid var(--border-color);
         }
 
         @media (max-width: 768px) {
@@ -364,6 +479,10 @@
             
             .total-points {
                 font-size: 2rem;
+            }
+
+            .main-toggles {
+                gap: 15px;
             }
         }
 
@@ -407,6 +526,56 @@
             color: var(--bright-blue);
             margin-bottom: 10px;
         }
+
+        .chevron {
+            transition: transform 0.3s ease;
+        }
+
+        .chevron.rotated {
+            transform: rotate(180deg);
+        }
+
+        .points-history {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bright-blue);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .export-btn {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -432,18 +601,68 @@
             </div>
         </div>
 
+        <div class="event-info" id="event-info">
+            <p><strong>💡 How to determine your event:</strong> Go to Calendar → Events tab → Click on current event → Check rewards to identify if it's Officer (Essence/Charm) or Armament (Tomes/Design Plan)</p>
+        </div>
+
         <div class="calculator-section">
             <h2 class="section-title" id="section-title">🧊 King of Icefield Calculator</h2>
             
-            <div class="toggle-container">
-                <div class="toggle" id="sniping-toggle"></div>
-                <label>Enable Sniping Calculator</label>
+            <div class="main-toggles">
+                <div class="toggle-container">
+                    <div class="toggle" id="sniping-toggle"></div>
+                    <label>🎯 Sniping Calculator</label>
+                </div>
                 
-                <div class="toggle" id="troops-toggle" style="margin-left: 20px;"></div>
-                <label>Enable Troop Training</label>
+                <div class="toggle-container" id="troops-toggle-container">
+                    <div class="toggle" id="troops-toggle"></div>
+                    <label>🪖 Troop Training</label>
+                </div>
+
+                <div class="toggle-container">
+                    <div class="toggle" id="timer-toggle"></div>
+                    <label>⏰ Event Timer</label>
+                </div>
+
+                <div class="toggle-container">
+                    <div class="toggle" id="history-toggle"></div>
+                    <label>📊 Points History</label>
+                </div>
             </div>
 
-            <div id="toggles-container"></div>
+            <div class="advanced-options" id="advanced-options">
+                <div class="advanced-header" onclick="toggleAdvancedOptions()">
+                    <span>⚙️ Advanced Options & Toggles</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="advanced-content" id="advanced-content">
+                    <div class="advanced-toggles" id="toggles-container"></div>
+                </div>
+            </div>
+
+            <div id="timer-section" class="timer-section" style="display: none;">
+                <h4 style="color: var(--bright-blue); margin-bottom: 10px;">⏰ Event Countdown</h4>
+                <div class="timer-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Event End Date & Time</label>
+                        <input type="datetime-local" class="item-input" id="event-end-time">
+                    </div>
+                </div>
+                <div class="timer-display" id="timer-display">Set event end time</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <div id="history-section" class="points-history" style="display: none;">
+                <h4 style="color: var(--bright-blue); margin-bottom: 10px;">📊 Points History</h4>
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportData()">📤 Export Data</button>
+                    <button class="export-btn" onclick="importData()">📥 Import Data</button>
+                    <button class="export-btn" onclick="clearHistory()">🗑️ Clear History</button>
+                </div>
+                <div id="history-content"></div>
+            </div>
 
             <div id="custom-event-creator" class="custom-event-section" style="display: none;">
                 <h3>Create Custom Event</h3>
@@ -461,6 +680,17 @@
 
             <div class="troop-section" id="troop-section" style="display: none;">
                 <h3 class="section-title">🪖 Troop Training Calculator</h3>
+                <div class="instructions">
+                    <h4>📋 How to find your training time:</h4>
+                    <ol>
+                        <li>Go to your camp with the highest level troops</li>
+                        <li>Click on "Train" button</li>
+                        <li>Select your highest level troop</li>
+                        <li>Set amount to <strong>1</strong> troop</li>
+                        <li>Note the training time and enter it below in <strong>seconds</strong></li>
+                        <li><em>Example: 30 minutes = 1800 seconds, 1 hour = 3600 seconds</em></li>
+                    </ol>
+                </div>
                 <div class="troop-inputs">
                     <div class="input-group">
                         <label class="input-label">Highest Troop Level</label>
@@ -480,12 +710,12 @@
                         </select>
                     </div>
                     <div class="input-group">
-                        <label class="input-label">Time per Troop (minutes)</label>
-                        <input type="number" class="item-input" id="troop-time" placeholder="e.g. 30">
+                        <label class="input-label">Time per 1 Troop (seconds)</label>
+                        <input type="number" class="item-input" id="troop-time" placeholder="e.g. 1800 for 30min">
                     </div>
                     <div class="input-group">
-                        <label class="input-label">Available Speedups (minutes)</label>
-                        <input type="number" class="item-input" id="troop-speedups" placeholder="Total minutes">
+                        <label class="input-label">Available Speedups (seconds)</label>
+                        <input type="number" class="item-input" id="troop-speedups" placeholder="Total seconds">
                     </div>
                 </div>
                 <div id="troop-calculation" style="margin-top: 15px;"></div>
@@ -519,10 +749,12 @@
             <div class="total-points" id="total-points">0</div>
             <p>Total Event Points</p>
         </div>
+
+        <input type="file" id="import-file" accept=".json" style="display: none;">
     </div>
 
     <script>
-        // Event data structure
+        // Enhanced Event data structure with complete information
         const eventData = {
             'koi': {
                 title: "🧊 King of Icefield Calculator",
@@ -531,25 +763,32 @@
                     'Fire Crystal Shards': { points: 1000, available: true, toggle: 'fire-shards' },
                     '1 Minute of Speedups': { points: 30, available: true, toggle: 'speedups' },
                     'Mythic General Shards': { points: 3040, available: true, toggle: 'mythic-shards', minAmount: 5 },
-                    'Hero Gear Essence Stones': { points: 4000, available: true, toggle: 'essence-stones' },
-                    'Mithril': { points: 40000, available: true, toggle: 'mithril' },
+                    'Hero Gear Essence Stone': { points: 4000, available: true, toggle: 'essence-stones' },
+                    'Mithril': { points: 40000, available: true, toggle: 'mithril' }
+                },
+                troops: {
+                    1: 3, 2: 4, 3: 5, 4: 8, 5: 12, 6: 18, 7: 25, 8: 35, 9: 45, 10: 60, 11: 75
+                },
+                toggles: [
+                    { id: 'beast-26', label: 'Beast Level 26+', tooltip: 'Enable if your beast is level 26 or higher' }
+                ],
+                specialCalculations: {
+                    beasts: { label: 'Beasts Killed', points: 1200, stamina: 10 },
+                    polarTerror: { label: 'Polar Terror Rallies', points: 30000, stamina: 25 }
+                }
+            },
+            'officer-essence': {
+                title: "🧑‍✈️ Officer Project - Essence Stone",
+                items: {
+                    'Hero Gear Essence Stone': { points: 6000, available: true, toggle: 'essence-stones' },
+                    'Mithril': { points: 216000, available: true, toggle: 'mithril' },
+                    'Mythic General Shards': { points: 3040, available: true, toggle: 'mythic-shards', minAmount: 5 },
                     'Advanced Wild Marks': { points: 15000, available: true, toggle: 'adv-marks' },
                     'Common Wild Marks': { points: 1150, available: true, toggle: 'common-marks' },
                     'Epic Hero Shards': { points: 1220, available: true, toggle: 'epic-shards', minAmount: 5 }
                 },
                 troops: {
                     1: 1, 2: 2, 3: 3, 4: 5, 5: 7, 6: 11, 7: 16, 8: 23, 9: 30, 10: 39, 11: 49
-                },
-                toggles: []
-            },
-            'officer-essence': {
-                title: "🧑‍✈️ Officer Project - Essence Stone",
-                items: {
-                    'Hero Gear Essence Stone': { points: 6000, available: true, toggle: 'essence-stones' },
-                    'Mithril': { points: 216000, available: true, toggle: 'mithril' }
-                },
-                troops: {
-                    1: 1, 2: 2, 3: 3, 4: 4, 5: 6, 6: 9, 7: 12, 8: 17, 9: 22, 10: 30, 11: 37
                 },
                 toggles: []
             },
@@ -560,7 +799,9 @@
                     'Mythic General Shards': { points: 3040, available: true, toggle: 'mythic-shards', minAmount: 5 },
                     'Epic Hero Shards': { points: 1220, available: true, toggle: 'epic-shards', minAmount: 5 }
                 },
-                troops: {},
+                troops: {
+                    1: 1, 2: 2, 3: 3, 4: 4, 5: 6, 6: 9, 7: 12, 8: 17, 9: 22, 10: 30, 11: 37
+                },
                 toggles: []
             },
             'armament-tomes': {
@@ -611,15 +852,11 @@
                     'Mithril': { points: 40000, available: true, toggle: 'mithril' }
                 },
                 troops: {
-                    1: 3, 2: 4, 3: 5, 4: 8, 5: 12, 6: 18, 7: 25, 8: 35, 9: 45, 10: 60, 11: 75
+                    1: 1, 2: 2, 3: 3, 4: 4, 5: 6, 6: 9, 7: 12, 8: 17, 9: 22, 10: 30, 11: 37
                 },
                 toggles: [
                     { id: 'beast-26', label: 'Beast Level 26+', tooltip: 'Enable if your beast is level 26 or higher' }
-                ],
-                specialCalculations: {
-                    beasts: { label: 'Beasts Killed', points: 1200, stamina: 10 },
-                    polarTerror: { label: 'Polar Terror Rallies', points: 30000, stamina: 25 }
-                }
+                ]
             },
             'custom': {
                 title: "⚙️ Custom Event Calculator",
@@ -633,9 +870,14 @@
         let currentEvent = 'koi';
         let snipingEnabled = false;
         let troopsEnabled = false;
+        let timerEnabled = false;
+        let historyEnabled = false;
         let itemCounts = {};
         let toggleStates = {};
         let customEvents = {};
+        let pointsHistory = [];
+        let eventTimer = null;
+        let advancedOptionsOpen = false;
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -643,6 +885,7 @@
             setupEventHandlers();
             renderCurrentEvent();
             calculateTotal();
+            updateEventTabSelection();
         });
 
         function setupEventHandlers() {
@@ -654,7 +897,7 @@
                 });
             });
 
-            // Sniping toggle
+            // Main toggles
             document.getElementById('sniping-toggle').addEventListener('click', function() {
                 snipingEnabled = !snipingEnabled;
                 this.classList.toggle('active', snipingEnabled);
@@ -662,7 +905,6 @@
                 saveToStorage();
             });
 
-            // Troops toggle
             document.getElementById('troops-toggle').addEventListener('click', function() {
                 troopsEnabled = !troopsEnabled;
                 this.classList.toggle('active', troopsEnabled);
@@ -671,31 +913,84 @@
                 saveToStorage();
             });
 
-            // Target gap input
+            document.getElementById('timer-toggle').addEventListener('click', function() {
+                timerEnabled = !timerEnabled;
+                this.classList.toggle('active', timerEnabled);
+                document.getElementById('timer-section').style.display = timerEnabled ? 'block' : 'none';
+                if (timerEnabled) {
+                    startTimer();
+                } else {
+                    stopTimer();
+                }
+                saveToStorage();
+            });
+
+            document.getElementById('history-toggle').addEventListener('click', function() {
+                historyEnabled = !historyEnabled;
+                this.classList.toggle('active', historyEnabled);
+                document.getElementById('history-section').style.display = historyEnabled ? 'block' : 'none';
+                if (historyEnabled) {
+                    renderHistory();
+                }
+                saveToStorage();
+            });
+
+            // Input handlers
             document.getElementById('target-gap').addEventListener('input', calculateSniping);
             document.getElementById('min-shards').addEventListener('change', calculateSniping);
+            document.getElementById('event-end-time').addEventListener('change', startTimer);
 
             // Troop calculation inputs
             ['troop-level', 'troop-time', 'troop-speedups'].forEach(id => {
                 document.getElementById(id).addEventListener('input', calculateTroops);
             });
+
+            // File input handler
+            document.getElementById('import-file').addEventListener('change', handleImportFile);
+        }
+
+        function updateEventTabSelection() {
+            document.querySelectorAll('.event-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.event === currentEvent);
+            });
         }
 
         function switchEvent(event) {
-            currentEvent = event;
-            
-            // Update active tab
-            document.querySelectorAll('.event-tab').forEach(tab => {
-                tab.classList.toggle('active', tab.dataset.event === event);
-            });
+            // Save current points to history before switching
+            if (currentEvent && currentEvent !== event) {
+                savePointsToHistory();
+            }
 
-            // Show custom event creator for custom events
+            currentEvent = event;
+            updateEventTabSelection();
+
+            // Show/hide custom event creator
             document.getElementById('custom-event-creator').style.display = 
                 event === 'custom' ? 'block' : 'none';
+
+            // Hide troops toggle for armament events
+            const troopsToggleContainer = document.getElementById('troops-toggle-container');
+            if (event === 'armament-tomes' || event === 'armament-design') {
+                troopsToggleContainer.style.display = 'none';
+                troopsEnabled = false;
+                document.getElementById('troops-toggle').classList.remove('active');
+                document.getElementById('troop-section').style.display = 'none';
+            } else {
+                troopsToggleContainer.style.display = 'flex';
+            }
 
             renderCurrentEvent();
             calculateTotal();
             saveToStorage();
+        }
+
+        function toggleAdvancedOptions() {
+            advancedOptionsOpen = !advancedOptionsOpen;
+            const content = document.getElementById('advanced-content');
+            const chevron = document.querySelector('.chevron');
+            
+            content.classList.toggle('active', advancedOptionsOpen);
+            chevron.classList.toggle('rotated', advancedOptionsOpen);
         }
 
         function renderCurrentEvent() {
@@ -726,19 +1021,15 @@
             container.innerHTML = '';
 
             const data = getCurrentEventData();
-            const toggles = data.toggles || [];
+            const toggles = [...(data.toggles || [])];
 
-            // Add item availability toggles for KOI and SVS
-            if (currentEvent === 'koi' || currentEvent === 'svs') {
-                Object.entries(data.items).forEach(([itemName, itemData]) => {
-                    if (itemData.toggle && !itemData.toggle.includes('fc6') && !itemData.toggle.includes('state-age') && !itemData.toggle.includes('beast-26')) {
-                        toggles.push({
-                            id: itemData.toggle,
-                            label: `${itemName} Available`,
-                            tooltip: `Toggle availability of ${itemName}`
-                        });
-                    }
-                });
+            // Hide advanced options if no toggles
+            const advancedOptions = document.getElementById('advanced-options');
+            if (toggles.length === 0) {
+                advancedOptions.style.display = 'none';
+                return;
+            } else {
+                advancedOptions.style.display = 'block';
             }
             
             toggles.forEach(toggle => {
@@ -747,7 +1038,9 @@
                 
                 const toggleEl = document.createElement('div');
                 const toggleKey = currentEvent + '-' + toggle.id;
-                toggleEl.className = `toggle ${toggleStates[toggleKey] !== false ? 'active' : ''}`;
+                // Special toggles default to false
+                const isActive = toggleStates[toggleKey] === true;
+                toggleEl.className = `toggle ${isActive ? 'active' : ''}`;
                 toggleEl.addEventListener('click', () => {
                     toggleStates[toggleKey] = !toggleStates[toggleKey];
                     toggleEl.classList.toggle('active', toggleStates[toggleKey]);
@@ -760,7 +1053,9 @@
                 const label = document.createElement('label');
                 label.className = 'tooltip';
                 label.textContent = toggle.label;
-                label.setAttribute('data-tooltip', toggle.tooltip);
+                if (toggle.tooltip) {
+                    label.setAttribute('data-tooltip', toggle.tooltip);
+                }
 
                 toggleContainer.appendChild(toggleEl);
                 toggleContainer.appendChild(label);
@@ -774,9 +1069,9 @@
                 const item = data.items[itemName];
                 if (item.toggle) {
                     const toggleKey = currentEvent + '-' + item.toggle;
-                    // Default to true for most items, false for special toggles
+                    // Special toggles default to false, others default to true
                     if (item.toggle === 'fc6' || item.toggle === 'state-age' || item.toggle === 'beast-26') {
-                        item.available = toggleStates[toggleKey] || false;
+                        item.available = toggleStates[toggleKey] === true;
                     } else {
                         item.available = toggleStates[toggleKey] !== false;
                     }
@@ -852,10 +1147,10 @@
         }
 
         function getEfficiencyBadge(points) {
-            if (points <= 100) return { text: 'Efficient', class: '' };
-            if (points <= 1500) return { text: 'Efficient', class: '' };
-            if (points <= 10000) return { text: 'Medium', class: 'medium' };
-            return { text: 'Expensive', class: 'low' };
+            if (points <= 100) return { text: 'Best', class: '' };
+            if (points <= 1500) return { text: 'Good', class: '' };
+            if (points <= 10000) return { text: 'Fair', class: 'medium' };
+            return { text: 'Poor', class: 'low' };
         }
 
         function renderSpecialCalculations() {
@@ -924,13 +1219,19 @@
             const maxTroops = Math.floor(speedups / timePerTroop);
             const totalPoints = maxTroops * pointsPerTroop;
 
+            // Convert seconds to readable time
+            const totalTime = maxTroops * timePerTroop;
+            const hours = Math.floor(totalTime / 3600);
+            const minutes = Math.floor((totalTime % 3600) / 60);
+            const timeStr = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m ${totalTime % 60}s`;
+
             container.innerHTML = `
                 <div style="background: var(--bg-tertiary); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
                     <h4 style="color: var(--bright-blue); margin-bottom: 10px;">📊 Troop Training Analysis</h4>
                     <p><strong>Level ${level} Troops:</strong> ${pointsPerTroop} points each</p>
                     <p><strong>Max Troops You Can Train:</strong> ${maxTroops.toLocaleString()}</p>
-                    <p><strong>Total Troop Points:</strong> <span style="color: var(--success); font-weight: bold;">${totalPoints.toLocaleString()}</span></p>
-                    <p><strong>Time Required:</strong> ${(maxTroops * timePerTroop).toLocaleString()} minutes</p>
+                    <p><strong>Total Troop Points:</strong> <span style="color: var(--ice-blue); font-weight: bold;">${totalPoints.toLocaleString()}</span></p>
+                    <p><strong>Time Required:</strong> ${timeStr}</p>
                 </div>
             `;
 
@@ -938,6 +1239,60 @@
             const troopKey = currentEvent + '-troop-total';
             itemCounts[troopKey] = totalPoints;
             calculateTotal();
+        }
+
+        function startTimer() {
+            const endTimeInput = document.getElementById('event-end-time');
+            if (!endTimeInput.value) return;
+
+            const endTime = new Date(endTimeInput.value).getTime();
+            const display = document.getElementById('timer-display');
+            const progressBar = document.getElementById('progress-fill');
+
+            // Clear existing timer
+            if (eventTimer) clearInterval(eventTimer);
+
+            // Set initial duration (7 days default)
+            const totalDuration = 7 * 24 * 60 * 60 * 1000;
+
+            eventTimer = setInterval(() => {
+                const now = new Date().getTime();
+                const timeLeft = endTime - now;
+
+                if (timeLeft < 0) {
+                    display.textContent = "Event Ended";
+                    progressBar.style.width = '100%';
+                    clearInterval(eventTimer);
+                    showNotification("Event has ended!");
+                    return;
+                }
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                display.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                
+                // Calculate progress
+                const elapsed = totalDuration - timeLeft;
+                const progress = Math.min((elapsed / totalDuration) * 100, 100);
+                progressBar.style.width = `${progress}%`;
+
+                // Notification milestones
+                if (timeLeft <= 3600000 && timeLeft > 3595000) { // 1 hour remaining
+                    showNotification("⏰ Only 1 hour left in the event!");
+                } else if (timeLeft <= 10800000 && timeLeft > 10795000) { // 3 hours remaining
+                    showNotification("⚠️ 3 hours remaining in the event!");
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (eventTimer) {
+                clearInterval(eventTimer);
+                eventTimer = null;
+            }
         }
 
         function calculateTotal() {
@@ -982,21 +1337,18 @@
             const data = getCurrentEventData();
             const availableItems = Object.entries(data.items)
                 .filter(([_, itemData]) => itemData.available)
-                .sort((a, b) => a[1].points - b[1].points); // Sort by efficiency (cheapest first!)
+                .sort((a, b) => a[1].points - b[1].points);
 
             let remainingGap = targetGap;
             const solution = [];
 
-            // Prioritize smaller, more efficient items first
             for (const [itemName, itemData] of availableItems) {
                 if (remainingGap <= 0) break;
                 
                 let needed = Math.ceil(remainingGap / itemData.points);
                 
-                // Handle minimum amounts for shards
                 if (itemData.minAmount && needed > 0) {
                     if (itemName.toLowerCase().includes('shard')) {
-                        // Use the user's preferred minimum for shards
                         const userMin = Math.max(minShards, itemData.minAmount);
                         needed = Math.ceil(needed / userMin) * userMin;
                     } else {
@@ -1004,7 +1356,6 @@
                     }
                 }
                 
-                // Only suggest reasonable amounts
                 const maxSuggestion = itemData.points > 10000 ? 5 : (itemData.points > 1000 ? 20 : 100);
                 
                 if (needed <= maxSuggestion) {
@@ -1024,7 +1375,7 @@
                 let html = '<h4>💡 Most Efficient Resource Combination:</h4><ul>';
                 let runningTotal = 0;
                 
-                solution.forEach((item, index) => {
+                solution.forEach(item => {
                     runningTotal += item.points;
                     const efficiencyBadge = getEfficiencyBadge(item.efficiency);
                     html += `<li>
@@ -1035,15 +1386,15 @@
                 });
                 
                 html += `</ul>
-                    <div style="margin-top: 15px; padding: 10px; background: var(--success); color: white; border-radius: 6px;">
+                    <div style="margin-top: 15px; padding: 10px; background: var(--bright-blue); color: white; border-radius: 6px;">
                         <strong>Total Points: ${runningTotal.toLocaleString()}</strong><br>
                         Target: ${targetGap.toLocaleString()}
                 `;
                 
                 if (remainingGap < 0) {
-                    html += `<br><span style="color: var(--warning);">⚠️ Exceeds target by ${Math.abs(remainingGap).toLocaleString()} points</span>`;
+                    html += `<br><span style="color: var(--ice-blue);">✨ Exceeds target by ${Math.abs(remainingGap).toLocaleString()} points</span>`;
                 } else if (remainingGap > 0) {
-                    html += `<br><span style="color: var(--warning);">⚠️ Still need ${remainingGap.toLocaleString()} more points</span>`;
+                    html += `<br><span style="color: var(--ice-blue);">⚠️ Still need ${remainingGap.toLocaleString()} more points</span>`;
                 }
                 html += '</div>';
                 
@@ -1051,6 +1402,153 @@
             } else {
                 resultContainer.innerHTML = '<p>No suitable combination found. Try enabling more resources or lowering your target.</p>';
             }
+        }
+
+        // Points History Functions
+        function savePointsToHistory() {
+            const totalElement = document.getElementById('total-points');
+            const total = parseInt(totalElement.textContent.replace(/,/g, '')) || 0;
+            
+            if (total > 0) {
+                const historyEntry = {
+                    event: currentEvent,
+                    eventTitle: getCurrentEventData().title,
+                    points: total,
+                    timestamp: Date.now(),
+                    date: new Date().toLocaleDateString()
+                };
+                
+                pointsHistory.unshift(historyEntry);
+                // Keep only last 20 entries
+                pointsHistory = pointsHistory.slice(0, 20);
+                saveToStorage();
+            }
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('history-content');
+            
+            if (pointsHistory.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-secondary); margin-top: 15px;">No history yet. Switch between events to start tracking your points!</p>';
+                return;
+            }
+
+            let html = '<div style="margin-top: 15px;">';
+            pointsHistory.forEach((entry, index) => {
+                const timeAgo = getTimeAgo(entry.timestamp);
+                html += `
+                    <div style="background: var(--bg-secondary); padding: 10px; border-radius: 6px; margin-bottom: 8px; border-left: 3px solid var(--bright-blue);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span><strong>${entry.eventTitle}</strong></span>
+                            <span style="color: var(--ice-blue); font-weight: bold;">${entry.points.toLocaleString()} pts</span>
+                        </div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 4px;">
+                            ${entry.date} • ${timeAgo}
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            container.innerHTML = html;
+        }
+
+        function getTimeAgo(timestamp) {
+            const now = Date.now();
+            const diff = now - timestamp;
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+            
+            if (days > 0) return `${days}d ago`;
+            if (hours > 0) return `${hours}h ago`;
+            if (minutes > 0) return `${minutes}m ago`;
+            return 'Just now';
+        }
+
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear all points history?')) {
+                pointsHistory = [];
+                renderHistory();
+                saveToStorage();
+                showNotification('History cleared!');
+            }
+        }
+
+        // Export/Import Functions
+        function exportData() {
+            const data = {
+                currentEvent,
+                itemCounts,
+                toggleStates,
+                customEvents,
+                pointsHistory,
+                exportDate: new Date().toISOString(),
+                version: '2.0'
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `whiteout-calculator-backup-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showNotification('Data exported successfully!');
+        }
+
+        function importData() {
+            document.getElementById('import-file').click();
+        }
+
+        function handleImportFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    if (data.version) {
+                        // Merge imported data
+                        if (data.itemCounts) itemCounts = { ...itemCounts, ...data.itemCounts };
+                        if (data.toggleStates) toggleStates = { ...toggleStates, ...data.toggleStates };
+                        if (data.customEvents) customEvents = { ...customEvents, ...data.customEvents };
+                        if (data.pointsHistory) pointsHistory = [...data.pointsHistory, ...pointsHistory].slice(0, 50);
+                        
+                        saveToStorage();
+                        renderCurrentEvent();
+                        calculateTotal();
+                        if (historyEnabled) renderHistory();
+                        
+                        showNotification('Data imported successfully!');
+                    } else {
+                        throw new Error('Invalid file format');
+                    }
+                } catch (error) {
+                    showNotification('Error importing file: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Hide and remove notification
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
         }
 
         // Custom event functions
@@ -1084,6 +1582,7 @@
             
             renderCustomItems();
             saveToStorage();
+            showNotification('Item added successfully!');
         }
 
         function renderCustomItems() {
@@ -1117,6 +1616,7 @@
                     calculateTotal();
                 }
                 saveToStorage();
+                showNotification('Item deleted!');
             }
         }
 
@@ -1129,46 +1629,183 @@
 
             renderCurrentEvent();
             calculateTotal();
-            alert(`Custom event "${eventName}" saved successfully!`);
+            showNotification(`Custom event "${eventName}" saved successfully!`);
         }
 
+        // Storage functions with improved error handling
         function saveToStorage() {
             const state = {
                 currentEvent,
                 snipingEnabled,
                 troopsEnabled,
+                timerEnabled,
+                historyEnabled,
                 itemCounts,
                 toggleStates,
-                customEvents
+                customEvents,
+                pointsHistory,
+                advancedOptionsOpen,
+                lastSaved: Date.now()
             };
-            localStorage.setItem('whiteout-calculator', JSON.stringify(state));
-        }
-
-        function loadFromStorage() {
-            const saved = localStorage.getItem('whiteout-calculator');
-            if (saved) {
-                try {
-                    const state = JSON.parse(saved);
-                    currentEvent = state.currentEvent || 'koi';
-                    snipingEnabled = state.snipingEnabled || false;
-                    troopsEnabled = state.troopsEnabled || false;
-                    itemCounts = state.itemCounts || {};
-                    toggleStates = state.toggleStates || {};
-                    customEvents = state.customEvents || {};
-
-                    // Apply toggles
-                    document.getElementById('sniping-toggle').classList.toggle('active', snipingEnabled);
-                    document.getElementById('sniping-section').style.display = snipingEnabled ? 'block' : 'none';
-                    document.getElementById('troops-toggle').classList.toggle('active', troopsEnabled);
-                    document.getElementById('troop-section').style.display = troopsEnabled ? 'block' : 'none';
-                } catch (e) {
-                    console.log('Error loading saved data:', e);
+            
+            // Use regular variables instead of localStorage in Claude.ai environment
+            try {
+                // This will work in regular browsers
+                if (typeof Storage !== "undefined") {
+                    localStorage.setItem('whiteout-calculator', JSON.stringify(state));
                 }
+            } catch (e) {
+                console.log('Storage not available, using memory only');
+                // In Claude.ai, we'll just keep data in memory during the session
             }
         }
 
-        // Auto-save every 10 seconds
-        setInterval(saveToStorage, 10000);
+        function loadFromStorage() {
+            try {
+                if (typeof Storage !== "undefined") {
+                    const saved = localStorage.getItem('whiteout-calculator');
+                    if (saved) {
+                        const state = JSON.parse(saved);
+                        applyLoadedState(state);
+                    }
+                }
+            } catch (e) {
+                console.log('Could not load from storage, using defaults');
+            }
+        }
+
+        function applyLoadedState(state) {
+            currentEvent = state.currentEvent || 'koi';
+            snipingEnabled = state.snipingEnabled || false;
+            troopsEnabled = state.troopsEnabled || false;
+            timerEnabled = state.timerEnabled || false;
+            historyEnabled = state.historyEnabled || false;
+            itemCounts = state.itemCounts || {};
+            toggleStates = state.toggleStates || {};
+            customEvents = state.customEvents || {};
+            pointsHistory = state.pointsHistory || [];
+            advancedOptionsOpen = state.advancedOptionsOpen || false;
+
+            // Apply UI state
+            document.getElementById('sniping-toggle').classList.toggle('active', snipingEnabled);
+            document.getElementById('sniping-section').style.display = snipingEnabled ? 'block' : 'none';
+            document.getElementById('troops-toggle').classList.toggle('active', troopsEnabled);
+            document.getElementById('troop-section').style.display = troopsEnabled ? 'block' : 'none';
+            document.getElementById('timer-toggle').classList.toggle('active', timerEnabled);
+            document.getElementById('timer-section').style.display = timerEnabled ? 'block' : 'none';
+            document.getElementById('history-toggle').classList.toggle('active', historyEnabled);
+            document.getElementById('history-section').style.display = historyEnabled ? 'block' : 'none';
+
+            if (advancedOptionsOpen) {
+                setTimeout(() => toggleAdvancedOptions(), 100);
+            }
+
+            if (timerEnabled) {
+                setTimeout(() => startTimer(), 100);
+            }
+
+            if (historyEnabled) {
+                setTimeout(() => renderHistory(), 100);
+            }
+        }
+
+        // Enhanced features
+        function requestNotificationPermission() {
+            if ("Notification" in window && Notification.permission !== "granted" && Notification.permission !== "denied") {
+                Notification.requestPermission().then(function (permission) {
+                    if (permission === "granted") {
+                        showNotification("Notifications enabled! You'll be alerted about event milestones.");
+                    }
+                });
+            }
+        }
+
+        function showBrowserNotification(title, body) {
+            if ("Notification" in window && Notification.permission === "granted") {
+                new Notification(title, {
+                    body: body,
+                    icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSIjMzI4MmI4Ii8+Cjwvc3ZnPgo='
+                });
+            }
+        }
+
+        // Performance tracking
+        function trackEventPerformance() {
+            const totalPoints = parseInt(document.getElementById('total-points').textContent.replace(/,/g, '')) || 0;
+            
+            if (totalPoints > 0) {
+                const data = getCurrentEventData();
+                const efficiency = calculateResourceEfficiency();
+                
+                return {
+                    event: currentEvent,
+                    totalPoints: totalPoints,
+                    efficiency: efficiency,
+                    timestamp: Date.now()
+                };
+            }
+            return null;
+        }
+
+        function calculateResourceEfficiency() {
+            const data = getCurrentEventData();
+            let totalValue = 0;
+            let totalItems = 0;
+            
+            Object.entries(data.items).forEach(([itemName, itemData]) => {
+                if (itemData.available) {
+                    const inputKey = currentEvent + '-' + itemName;
+                    const quantity = itemCounts[inputKey] || 0;
+                    if (quantity > 0) {
+                        totalValue += quantity * itemData.points;
+                        totalItems += quantity;
+                    }
+                }
+            });
+            
+            return totalItems > 0 ? totalValue / totalItems : 0;
+        }
+
+        // Auto-save every 30 seconds
+        setInterval(() => {
+            if (typeof saveToStorage === 'function') {
+                saveToStorage();
+            }
+        }, 30000);
+
+        // Save when page is about to close
+        window.addEventListener('beforeunload', function() {
+            saveToStorage();
+            savePointsToHistory();
+        });
+
+        // Initialize notification permission request
+        setTimeout(requestNotificationPermission, 2000);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 's':
+                        e.preventDefault();
+                        saveToStorage();
+                        showNotification('Data saved!');
+                        break;
+                    case 'e':
+                        e.preventDefault();
+                        exportData();
+                        break;
+                    case 'i':
+                        e.preventDefault();
+                        importData();
+                        break;
+                }
+            }
+        });
+
+        // Add version info for debugging
+        console.log('Whiteout Survival Calculator v2.0 Enhanced');
+        console.log('Features: Event Timer, Points History, Export/Import, Notifications');
     </script>
 </body>
 </html>
